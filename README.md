@@ -3,7 +3,7 @@
 > - 将图片存在的页码，链接，oo数，xx数存入数据库;
 
 1. 导入conf目录下data.sql
-2. 运行python getImg.py
+2. 运行python getIMG.py
 
 ---
 TODO:
