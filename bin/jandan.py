@@ -7,7 +7,6 @@ import os
 import sys
 import requests
 from sql import mySQL
-from conf import setting
 
 s = mySQL()
 
