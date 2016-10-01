@@ -56,7 +56,7 @@ def getCurrent():
     try:
         page = current.findall(start_page)[0]
         print page
-    #s.put_num('page_num',page)
+        s.put_num('page_num',page)
         return page
     except IndexError ,e:
         print "Error agent!"
