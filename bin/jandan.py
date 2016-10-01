@@ -5,6 +5,7 @@
 import re
 import os
 import sys
+import random
 import requests
 from sql import mySQL
 
@@ -12,17 +13,27 @@ s = mySQL()
 
 def getHtml(url):
     #获取html
-    n = 0
-    agent = s.get_agent()
-    while n < len(agent):
-        headers = {'User-Agent':agent[n]}
+    #n = 0
+    flag = True
+    agents = s.get_agent()
+    while flag:
+        headers = {'User-Agent':random.choice(agents)}
         request = requests.get(url, headers=headers)
         if request.ok:
             html = request.content
+            flag = False
             return html
-            break
         else:
-            n += 1
+            print "Bad agent: %s" % headers['User-Agent']
+    #while n < len(agent):
+    #    headers = {'User-Agent':agent[n]}
+    #    request = requests.get(url, headers=headers)
+    #    if request.ok:
+    #        html = request.content
+    #        return html
+    #        break
+    #    else:
+    #        n += 1
     print "连接服务器失败，错误码：%s" % request.status_code
     sys.exit(1)
 
@@ -42,9 +53,14 @@ def getCurrent():
     #获取最新页码
     start_page = getHtml("http://jandan.net/ooxx")
     current = re.compile(r'<div class="comments">.*?<span class="current-comment-page">\[(\d+)\]</span>',re.S)
-    page = current.findall(start_page)[0]
-    s.put_num('page_num',page)
-    return page
+    try:
+        page = current.findall(start_page)[0]
+        print page
+    #s.put_num('page_num',page)
+        return page
+    except IndexError ,e:
+        print "Error agent!"
+        sys.exit(1)
 
 def save_img(url,name):
     #保存图片

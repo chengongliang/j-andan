@@ -18,7 +18,7 @@ class mySQL():
         #获取agent列表
         self.cur.execute("select info from configs where config='agent'")
         sql_data = self.cur.fetchall()
-        List = sql_data[0][0].split("','")
+        List = sql_data[0][0].split('","')
         return List
 
     def get_num(self):
