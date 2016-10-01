@@ -48,12 +48,11 @@ def getUrl_list(html,p):
             if int(oo)/int(xx) >= 10:
                 s.put_ooxx(p,url,oo,xx)
                 url_list.append(url)
+            elif int(oo) >= 200 and int(xx) <= 30:
+                s.put_ooxx(p,url,oo,xx)
+                url_list.append(url)
         except ZeroDivisionError,e:
             s.put_ooxx(p,url,oo,xx)
-
-       # if int(oo) >= 150 and int(xx) <= 30:
-       #     s.put_ooxx(p,url,oo,xx)
-       #     url_list.append(url)
     return url_list
 
 def getCurrent():
