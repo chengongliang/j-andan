@@ -7,6 +7,7 @@
 * MySQL-python
 
 使用：
+* 创建src目录
 * 导入conf目录下data.sql
 * 运行python getIMG.py
 
