@@ -61,7 +61,6 @@ def getCurrent():
     current = re.compile(r'<div class="comments">.*?<span class="current-comment-page">\[(\d+)\]</span>',re.S)
     try:
         page = current.findall(start_page)[0]
-        print page
         s.put_num('page_num',page)
         return page
     except IndexError ,e:
@@ -74,7 +73,6 @@ def save_img(url,name):
         with open('src/%s' %name, 'wb') as fd:
             img = getHtml(url)
             fd.write(img)
-
 def download(url_list):
     #切分链接，获取图片名
     for url in url_list:
@@ -86,10 +84,13 @@ def main():
     current_num = getCurrent()
     list_pages = range(int(last_num),int(current_num)+1)
     print list_pages
+    n = 0
     for p in list_pages:
         url = 'http://jandan.net/ooxx/page-%s#comments' % p
         print "~~正在下载第%s页~~" % p
         html = getHtml(url)
         url_list = getUrl_list(html,p)
         download(url_list)
+        n += len(url_list)
+    print "~~已下载%s张图片~~" % n
     s.close()
