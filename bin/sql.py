@@ -21,15 +21,15 @@ class mySQL():
         List = sql_data[0][0].split('","')
         return List
 
-    def get_num(self):
+    def get_num(self,p):
         #获取上次爬取的页码
-        self.cur.execute("select info from configs where config='page_num'")
+        self.cur.execute("select info from configs where config=%s",[p])
         num = self.cur.fetchall()[0][0]
         return num
 
-    def put_num(self,conf,num):
+    def put_num(self,project,num):
         #写入新页码
-        self.cur.execute("UPDATE `jandan`.`configs` SET `info`=%s WHERE (`config`=%s)",[num, conf])
+        self.cur.execute("UPDATE `jandan`.`configs` SET `info`=%s WHERE (`config`=%s)",[num, project])
         self.conn.commit()
 
     def put_ooxx(self,num,url,oo,xx):
