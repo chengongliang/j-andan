@@ -37,6 +37,10 @@ class mySQL():
         self.cur.execute("INSERT INTO `jandan`.`ooxx` (`page_num`, `url`, `oo`, `xx`) SELECT %s, %s, %s, %s FROM dual WHERE NOT EXISTS (SELECT url FROM ooxx WHERE url = %s)",[num,url,oo,xx,url])
         self.conn.commit()
 
+    def put_duan(self,num,content,oo,xx,md5):
+        self.cur.execute("INSERT INTO `jandan`.`duan` (`page_num`, `content`, `oo`, `xx`, `hash`) SELECT %s, %s, %s, %s, %s FROM dual WHERE NOT EXISTS (SELECT hash FROM duan WHERE hash = %s)",[num,content,oo,xx,md5,md5])
+        self.conn.commit()
+
     def close(self):
         self.cur.close()
         self.conn.close()
