@@ -69,10 +69,13 @@ def getCurrent():
 
 def save_img(url,name):
     #保存图片
+    if not os.path.exists('src'):
+        os.mkdir('src')
     if not os.path.exists('src/%s' %name):
         with open('src/%s' %name, 'wb') as fd:
             img = getHtml(url)
             fd.write(img)
+
 def download(url_list):
     #切分链接，获取图片名
     for url in url_list:
