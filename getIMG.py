@@ -2,7 +2,7 @@
 #coding:utf8
 #author:chengongliang
 
-from bin import jandan
+from bin import ooxx
 
 if __name__ == "__main__":
-    jandan.main()
+    ooxx.main()
