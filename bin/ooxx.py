@@ -40,7 +40,7 @@ def getHtml(url):
 
 def getUrl_list(html,p):
     #获取图片链接
-    re_img = re.compile(r'<div class="text">.*?<p>.*?<a href="(http://ww.*?)".*?<div class="vote".*?<span id="cos_support.*?">(\d+)</span>.*?<span id="cos_unsupport.*?">(\d+)</span>', re.S)
+    re_img = re.compile(r'<div class="text">.*?<p>.*?<a href="(//ww.*?)".*?<div class="vote".*?<span id="cos_support.*?">(\d+)</span>.*?<span id="cos_unsupport.*?">(\d+)</span>', re.S)
     url_list = []
     items = re_img.findall(html)
     for url,oo,xx in items:
@@ -73,6 +73,7 @@ def save_img(url,name):
         os.mkdir('src')
     if not os.path.exists('src/%s' %name):
         with open('src/%s' %name, 'wb') as fd:
+            url = 'http:' + url
             img = getHtml(url)
             fd.write(img)
 
