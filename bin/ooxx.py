@@ -64,8 +64,7 @@ def getUrl_list(html, p):
 def getCurrent(url, project):
     # 获取最新页码
     start_page = getHtml(url)
-    current = re.compile(
-        r'<div class="comments">.*?<span class="current-comment-page">\[(\d+)\]</span>', re.S)
+    current = re.compile(r'<div class="comments">.*?<span class="current-comment-page">\[(\d+)\]</span>', re.S)
     try:
         page = current.findall(start_page)[0]
         s.put_num(project, page)

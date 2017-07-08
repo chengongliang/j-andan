@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-#coding:utf8
-#author:chengongliang
+# coding:utf8
+# author:chengongliang
 
 from bin import ooxx
 
