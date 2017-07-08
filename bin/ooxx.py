@@ -48,7 +48,6 @@ def getUrl_list(html, p):
         items = re_img.findall(html)
     except Exception, e:
         items = e
-    print items
     for url, oo, xx in items:
         try:
             if int(oo) / int(xx) >= 10:
@@ -98,7 +97,6 @@ def main():
     last_num = s.get_num('ooxx_page_num')
     current_num = getCurrent('http://jandan.net/ooxx', 'ooxx_page_num')
     list_pages = range(int(last_num), int(current_num) + 1)
-    print list_pages
     n = 0
     for p in list_pages:
         url = 'http://jandan.net/ooxx/page-%s#comments' % p
